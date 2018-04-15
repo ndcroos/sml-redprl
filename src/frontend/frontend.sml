@@ -16,7 +16,7 @@ struct
           s
         end
     end
-
+  (* local is a declaration, similar in use to "let .. in .. end" *)
   local
     structure E = RedPrlError
   in
