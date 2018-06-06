@@ -65,6 +65,7 @@
   :type 'hook
   :options '(redprl-display-revolutionary-saying))
 
+;; 
 (defvar redprl-mode-syntax-table
   (let ((table (make-syntax-table)))
     (modify-syntax-entry ?- "w" table)
@@ -76,6 +77,7 @@
     table)
   "Syntax table for RedPRL.")
 
+;; defconst: a value that never changes.
 (defconst redprl-keywords
   '("Def" "Thm" "Tac" "Sym" "Record" "Print")
   "RedPRL's keywords.")
@@ -84,21 +86,28 @@
   '("exp" "exn" "lbl" "lvl" "dim")
   "RedPRL's built-in sorts.")
 
+
+;;
 (defconst redprl-def-name-regexp
   '(: "Def" (+ whitespace) (group-n 1 (+ word)) not-wordchar))
 
+;;
 (defconst redprl-thm-name-regexp
   '(: "Thm" (+ whitespace) (group-n 1 (+ word)) not-wordchar))
 
+;;
 (defconst redprl-tac-name-regexp
   '(: "Tac" (+ whitespace) (group-n 1 (+ word)) not-wordchar))
 
+;;
 (defconst redprl-sym-name-regexp
   '(: "Sym" (+ whitespace) (group-n 1 (+ word)) not-wordchar))
 
+;;
 (defconst redprl-record-name-regexp
   '(: "Record" (+ whitespace) (group-n 1 (+ word)) not-wordchar))
 
+;;
 (defconst redprl-declaration-name-regexp
   `(or ,redprl-def-name-regexp
        ,redprl-thm-name-regexp
@@ -186,6 +195,8 @@
                                    redprl--revolutionary-sayings)))
     (message "%s" revolutionary-saying)))
 
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Derived-Modes.html
+;; "If there is no closely related mode, you should inherit from either text-mode, special-mode, or prog-mode."
 ;;;###autoload
 (define-derived-mode redprl-mode prog-mode "RedPRL"
   "Major mode for editing RedPRL proofs.
@@ -205,6 +216,7 @@
   ;; Bind mode-specific commands to keys
   (define-key redprl-mode-map (kbd "C-c C-l") 'redprl-compile-buffer)
 
+  ;; 
   (eval-after-load 'flycheck
     '(progn
        (flycheck-define-checker redprl
@@ -240,5 +252,7 @@
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.prl\\'" . redprl-mode))
 
+
+;; alternative to autoload for loading files automatically.
 (provide 'redprl)
 ;;; redprl.el ends here
