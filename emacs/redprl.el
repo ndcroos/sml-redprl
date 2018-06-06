@@ -38,6 +38,8 @@
 
 (defgroup redprl nil "RedPRL" :prefix 'redprl :group 'languages)
 
+;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html
+;; A face is a text style
 (defface redprl-declaration-keyword-face
   '((t (:inherit font-lock-keyword-face))) "Face for RedPRL's declaration keywords."
   :group 'redprl)
