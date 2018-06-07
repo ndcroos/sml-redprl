@@ -1,3 +1,12 @@
+(* 
+SML programs are divided into modules such as structures ('interfaces').
+
+mode: 3 value constructors
+PRINT-DEVELOPMENT with no arguments
+FROM_STDIN with one
+
+*)
+
 structure Main =
 struct
   datatype mode =
@@ -42,8 +51,14 @@ struct
     "  --help                    Print this message\n" ^
     "  --from-stdin[=filename]   Read signature from stdin with optional diagnostic filename\n"
 
+  (*  *)
   fun toExitStatus b = if b then OS.Process.success else OS.Process.failure
-
+  
+  (* 
+  main must return an exit code. That code is either a success or a fail code.
+  List.all: 
+  
+  *)
   fun main (_, args) =
     Debug.wrap (fn _ =>
       let
