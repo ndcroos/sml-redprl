@@ -1,3 +1,5 @@
+
+(*  *)
 functor RefinerKit (Sig : MINI_SIGNATURE) =
 struct
   structure E = RedPrlError and O = RedPrlOpData and T = TelescopeUtil (Lcf.Tl) and Abt = RedPrlAbt and Syn = Syntax and Seq = RedPrlSequent and J = RedPrlJudgment
@@ -30,6 +32,7 @@ struct
       end
   end
 
+  (*  *)
   fun makeGoal (Lcf.|| (bs, jdg)) =
     let
       open Abt infix 1 $#
@@ -40,12 +43,13 @@ struct
       ((x, Lcf.|| (bs, jdg)), hole)
     end
 
-
+  (*  *)
   fun lookupHyp H z =
     Hyps.lookup H z
     handle _ =>
       raise E.error [E.% @@ "Found nothing in context for hypothesis `" ^ Sym.toString z ^ "`"]
-
+  
+  (*  *)
   fun assertAlphaEq (m, n) =
     if Abt.eq (m, n) then
       ()
