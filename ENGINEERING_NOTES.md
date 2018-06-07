@@ -63,6 +63,16 @@ will ensure that no code is merged into master which does not match the
 surrounding style.
 
 
+### Notes on program flow
+
+cm file: describes what is going to be compiled.
+
+mlb-file: 
+http://mlton.org/MLBasisExamples
+
+local: 
+
+ann: annotations
 
 #### This is a living document!
 
