@@ -115,6 +115,7 @@
        ,redprl-sym-name-regexp
        ,redprl-record-name-regexp))
 
+;;
 (defvar redprl-mode-font-lock-keywords
   `(
     ;; Declaration keyword
@@ -127,6 +128,8 @@
     (,(rx "'" (+ word)) 0 'redprl-atom-face)
     ))
 
+;; save-excursion is a special form.
+;; saves the location of point and mark, executes the body of the function, and then restores point and mark to their previous positions if their locations were changed.
 (defun redprl-defined-names ()
   "Find all names defined in this buffer."
   (save-excursion
@@ -138,6 +141,9 @@
           (push (match-string-no-properties 1) names)))
       names)))
 
+;; let*: sets each variable in sequence, one after another, 
+; and variables in the latter part of the varlist can make use of the values to
+; which Emacs set variables in the earlier part of the varlist.
 (defun redprl-completion-at-point ()
   "Attempt to perform completion for RedPRL's keywords."
   (when (looking-back (rx (+ word)) nil t)
@@ -161,6 +167,8 @@
   "Compute a buffer name for the `redprl-mode' compilation buffer."
   redprl--compilation-buffer-name)
 
+;; A function can be made interactive by starting with the special form interactive.
+;; 
 (defun redprl-compile-buffer ()
   "Load the current file into RedPRL."
   (interactive)
@@ -179,7 +187,7 @@
             (compile command)))
       (error "Buffer has no file name"))))
 
-
+;; List of sayings.
 (defconst redprl--revolutionary-sayings
   '("Decisively Smash the Formalist Clique!"
     "Long Live the Anti-Realist Struggle!"
@@ -188,6 +196,7 @@
     "Criticize The Old World And Build A New World Using Cubical Thought As A Weapon!")
   "Words of encouragement to be displayed when RedPRL is initially launched.")
 
+;; 
 (defun redprl-display-revolutionary-saying ()
   "Display a revolutionary saying to hearten RedPRL users."
   (interactive)
